@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx json-server -p 3500 -w data.json"
+    "start": "npx json-server -p %PORT% -w data.json"
   },
   "author": "",
   "license": "ISC",
