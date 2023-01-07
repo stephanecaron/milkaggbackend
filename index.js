@@ -10,12 +10,7 @@ const fs = require('fs')
 const fileName = './db.json'
 const file = require(fileName);
 
-let highestId = 0;
-data.playerList.forEach((player) => {
-    if (player.id > highestId) {
-        highestId = player.id;
-    }
-});
+
 
 app.use(cors({origin:"https://milkagg-production.up.railway.app",credentials:true}))
 app.use(express.json())
@@ -32,8 +27,12 @@ app.get('/getall', (req, res) => {
 app.post('/post', (req, res) => {
     console.log(req.body.data)
     let playerData=JSON.parse(req.body.data)
-
-
+    let highestId = 0;
+data.playerList.forEach((player) => {
+    if (player.id > highestId) {
+        highestId = player.id;
+    }
+});
     playerData["id"] = highestId + 1;
     data.playerList.push(playerData)
     fs.writeFile(fileName, JSON.stringify(data), function writeJSON(err) {
