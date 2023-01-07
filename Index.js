@@ -10,7 +10,12 @@ const fs = require('fs')
 const fileName = './db.json'
 const file = require(fileName);
 
-file.key = "new value";
+let highestId = 0;
+data.playerList.forEach((player) => {
+    if (player.id > highestId) {
+        highestId = player.id;
+    }
+});
 
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
 app.use(express.json())
@@ -25,14 +30,28 @@ app.get('/getall', (req, res) => {
     })
 
 app.post('/post', (req, res) => {
+    console.log(req.body.data)
     let playerData=JSON.parse(req.body.data)
-        playerData["id"]="5"
-    console.log(playerData)
-    data.playerList.push(playerData)
 
+
+    playerData["id"] = highestId + 1;
+    data.playerList.push(playerData)
+    fs.writeFile(fileName, JSON.stringify(data), function writeJSON(err) {
+    if (err) return console.log(err);
+    console.log(playerData)
+    console.log('writing to' + fileName)
+    })
     return res.status(200).json(data)
     })
 
+ app.delete('/delete', (req, res) => {
+    const result = data.playerList.filter(player => player.id !== Number(req.query.id));
+    data.playerList = result
+    fs.writeFile(fileName, JSON.stringify(data), function writeJSON(err) {
+        if (err) return console.log(err);
+        })
+    return res.status(200).json(data)
+ })   
 app.listen(port, () => {
 console.log(`Example app listening on ${port}`)
 
