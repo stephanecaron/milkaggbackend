@@ -17,7 +17,7 @@ data.playerList.forEach((player) => {
     }
 });
 
-app.use(cors({origin:"http://milkagg-production.up.railway.app",credentials:true}))
+app.use(cors({origin:"https://milkagg-production.up.railway.app",credentials:true}))
 app.use(express.json())
 
 app.get('/get', (req, res) => {
