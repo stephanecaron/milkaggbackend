@@ -2,6 +2,7 @@ const express = require('express')
                 require('dotenv').config()
 const res = require('express/lib/response')
 const data = require('./db.json')
+const characters = require('./characterList.json')
 const cors = require('cors')
 const { restart } = require('nodemon')
 const port = process.env.PORT
@@ -19,6 +20,10 @@ app.get('/get', (req, res) => {
     console.log(req.query)
     res.send(data.items.filter((identifier) => identifier.id == req.query.id))
     })
+
+app.get('/getcharacters'), (req, res) => {
+    res.status(200).json(characters)
+}
 
 app.get('/getall', (req, res) => {
     return res.status(200).json(data)

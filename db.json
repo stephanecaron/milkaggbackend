@@ -1,1 +1,10 @@
-{"playerList":[{"playerNameValue":"Renhosoft","playerCharacterValue":"johnny","playerSeedValue":15,"id":1}]}
+{
+    "playerList": [
+        {
+            "playerNameValue": "Renhosoft",
+            "playerCharacterValue": "johnny",
+            "playerSeedValue": 15,
+            "id": 1
+        }
+    ]
+}
