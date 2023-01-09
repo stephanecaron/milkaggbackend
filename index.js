@@ -21,9 +21,9 @@ app.get('/get', (req, res) => {
     res.send(data.items.filter((identifier) => identifier.id == req.query.id))
     })
 
-app.get('/getcharacters'), (req, res) => {
+app.get('/getcharacters', (req, res) => {
     res.status(200).json(characters)
-}
+})
 
 app.get('/getall', (req, res) => {
     return res.status(200).json(data)
