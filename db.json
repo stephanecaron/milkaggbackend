@@ -1,10 +1,1 @@
-{
-    "playerList": [
-        {
-            "playerNameValue": "Renhosoft",
-            "playerCharacterValue": "johnny",
-            "playerSeedValue": 15,
-            "id": 1
-        }
-    ]
-}
+{"playerList":[{"playerNameValue":"Modeste","playerCharacterValue":"axl","playerSeedValue":15,"id":1},{"playerNameValue":"Stephane","playerCharacterValue":"johnny","playerSeedValue":3,"id":2},{"playerNameValue":"Danny","playerCharacterValue":"ky","playerSeedValue":5,"id":3},{"playerNameValue":"Eric","playerCharacterValue":"elphelt","playerSeedValue":1,"id":4},{"playerNameValue":"Thy","playerCharacterValue":"null","playerSeedValue":4,"id":5},{"playerNameValue":"Kupo","playerCharacterValue":"null","playerSeedValue":3,"id":6},{"playerNameValue":"3","playerCharacterValue":"null","playerSeedValue":4,"id":7},{"playerNameValue":"15","playerCharacterValue":"sol","playerSeedValue":5,"id":8}]}

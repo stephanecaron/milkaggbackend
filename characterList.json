@@ -1,9 +1,30 @@
 {
     "characterList": [
         {
+            "characterNameValue": "",
+            "characterDisplayValue": "Select Character",
+            "characterID": 0
+        },        
+        {
             "characterNameValue": "axl",
             "characterDisplayValue": "Axl Low",
             "characterID": 1
+        },
+
+        {
+            "characterNameValue": "johnny",
+            "characterDisplayValue": "Johnny Sfondi",
+            "characterID": 2
+        },
+        {
+            "characterNameValue": "ky",
+            "characterDisplayValue": "Ky Kiske",
+            "characterID": 3
+        },        
+        {
+            "characterNameValue": "elphelt",
+            "characterDisplayValue": "Elphelt",
+            "characterID": 4
         }
     ]
 }

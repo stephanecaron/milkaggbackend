@@ -10,10 +10,10 @@ const app = express()
 const fs = require('fs')
 const fileName = './db.json'
 const file = require(fileName);
+const dbcall = require('./dbcall.js');
 
 
-
-app.use(cors({origin:"https://milkagg-production.up.railway.app",credentials:true}))
+app.use(cors({origin:"http://localhost:3000",credentials:true}))
 app.use(express.json())
 
 app.get('/get', (req, res) => {
@@ -21,9 +21,20 @@ app.get('/get', (req, res) => {
     res.send(data.items.filter((identifier) => identifier.id == req.query.id))
     })
 
+
 app.get('/getcharacters', (req, res) => {
-    res.status(200).json(characters)
-})
+    dbcall.query('Select * FROM characterlistdb', function(error, result) {
+    if (error) throw error;
+    res.status(200).json(result)
+    });
+});
+
+app.get('/insertrandomthing', (req, res) => {
+    dbcall.query('Select * FROM characterlistdb', function(error, result) {
+    if (error) throw error;
+    res.status(200).json(result)
+    });
+});
 
 app.get('/getall', (req, res) => {
     return res.status(200).json(data)
@@ -59,4 +70,7 @@ data.playerList.forEach((player) => {
 app.listen(port, () => {
 console.log(`Example app listening on ${port}`)
 
+
+
 })
+
