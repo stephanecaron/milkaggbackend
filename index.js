@@ -11,6 +11,7 @@ const fs = require('fs')
 const fileName = './db.json'
 const file = require(fileName);
 const dbcall = require('./dbcall.js');
+const { json } = require('express/lib/response')
 
 
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
@@ -29,18 +30,22 @@ app.get('/getcharacters', (req, res) => {
     });
 });
 
-app.get('/insertrandomthing', (req, res) => {
-    dbcall.query('Select * FROM characterlistdb', function(error, result) {
+app.post('/post', (req, res) => {
+    let player= JSON.parse(req.body.data)
+    console.log (player.playerNameValue + " " + player.playerCharacterValue + " " + player.playerSeedValue)
+    dbcall.query(`INSERT INTO milkaggdb (playerNameValue, playerCharacterValue, playerSeedValue) VALUES ('${player.playerNameValue}', '${player.playerCharacterValue}', '${player.playerSeedValue}');`, function(error, result) {
     if (error) throw error;
-    res.status(200).json(result)
     });
+
 });
+
+
 
 app.get('/getall', (req, res) => {
     return res.status(200).json(data)
     })
 
-app.post('/post', (req, res) => {
+/* app.post('/post', (req, res) => {
     console.log(req.body.data)
     let playerData=JSON.parse(req.body.data)
     let highestId = 0;
@@ -57,7 +62,7 @@ data.playerList.forEach((player) => {
     console.log('writing to' + fileName)
     })
     return res.status(200).json(data)
-    })
+    }) */
 
  app.delete('/delete', (req, res) => {
     const result = data.playerList.filter(player => player.id !== Number(req.query.id));
