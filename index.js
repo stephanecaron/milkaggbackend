@@ -42,40 +42,30 @@ app.post('/post', (req, res) => {
 
 
 app.get('/getall', (req, res) => {
-    return res.status(200).json(data)
+    dbcall.query(`SELECT * FROM milkaggdb`, function (error, result) {
+        if (error) throw error;
+        res.status(200).json(result)
+        console.log (result)
     })
+})
 
-/* app.post('/post', (req, res) => {
-    console.log(req.body.data)
-    let playerData=JSON.parse(req.body.data)
-    let highestId = 0;
-data.playerList.forEach((player) => {
-    if (player.id > highestId) {
-        highestId = player.id;
-    }
-});
-    playerData["id"] = highestId + 1;
-    data.playerList.push(playerData)
-    fs.writeFile(fileName, JSON.stringify(data), function writeJSON(err) {
-    if (err) return console.log(err);
-    console.log(playerData)
-    console.log('writing to' + fileName)
-    })
-    return res.status(200).json(data)
-    }) */
+app.delete('/delete'), (req, res) => {
+    console.log (req.query.id)
+/*     dbcall.query(`DELETE FROM milkaggdb WHERE id=${req.query.id};`) */
+    if (error) throw error;
+}
 
- app.delete('/delete', (req, res) => {
+/*  app.delete('/delete', (req, res) => {
     const result = data.playerList.filter(player => player.id !== Number(req.query.id));
     data.playerList = result
     fs.writeFile(fileName, JSON.stringify(data), function writeJSON(err) {
         if (err) return console.log(err);
         })
     return res.status(200).json(data)
- })   
+ })    */
+
+
 app.listen(port, () => {
 console.log(`Example app listening on ${port}`)
-
-
-
 })
 
