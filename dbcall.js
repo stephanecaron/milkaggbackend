@@ -2,7 +2,7 @@ var mysql      = require('mysql2');
 var connection = mysql.createConnection({
     host     : 'containers-us-west-66.railway.app',
     user     : 'root',
-    password : 'Unj73x4rjbnw6dKTudDq',
+    password : 'UumllcAssVAJSt9euVmP',
     database : 'railway',
     port: 5866
   });
