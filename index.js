@@ -9,8 +9,10 @@ const app = express()
 const dbcall = require('./dbcall.js');
 
 
+
 app.use(cors({origin:"http://localhost:3000",credentials:true}))
-/* app.use(express.json()) */
+app.use(express.json())
+
 
 app.get('/get', (req, res) => {
     console.log(req.query)
@@ -26,12 +28,12 @@ app.get('/getcharacters', (req, res) => {
 });
 
 app.post('/post', (req, res) => {
-    let player= req.body.data
-    console.log (player.playerNameValue + " " + player.playerCharacterValue + " " + player.playerSeedValue)
+    console.log (req.body.myNewPlayer)
+    let player = req.body.myNewPlayer
     dbcall.query(`INSERT INTO milkaggdb (playerNameValue, playerCharacterValue, playerSeedValue) VALUES ('${player.playerNameValue}', '${player.playerCharacterValue}', '${player.playerSeedValue}');`, function(error, result) {
-    if (error) throw error;
+        if (error) throw error;
+        res.status(200).json(result.insertId)
     });
-
 });
 
 
@@ -44,10 +46,13 @@ app.get('/getall', (req, res) => {
     })
 })
 
-app.delete('/delete', (req, res, err) => {
+app.delete('/delete', (req, res) => {
     console.log (req.query.id)
-    dbcall.query(`DELETE FROM milkaggdb WHERE id=${req.query.id};`)
-    if (err) throw err;
+    try {
+      dbcall.query(`DELETE FROM milkaggdb WHERE id=${req.query.id};`)
+    } catch (error) {
+        throw error;
+    }
 })
 
 /*  app.delete('/delete', (req, res) => {
